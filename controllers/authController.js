@@ -44,7 +44,6 @@ export const signup = catchAsync(async (req, res, next) => {
     role: req.body.role,
   })
   const url = `${req.protocol}://${req.get('host')}/me`
-  console.log(url)
   await new Email(newUser, url).sendWelcome()
 
   createSendToken(newUser, 200, res)
@@ -59,7 +58,6 @@ export const login = catchAsync(async (req, res, next) => {
 
   // 2) check if user exists && password is correct
   const user = await User.findOne({ email }).select('+password')
-  console.log(user)
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect email or password', 401))
