@@ -1,0 +1,12 @@
+extends base
+
+block content
+  main.main
+    .login-form.form-register
+      h2.heading-secondary.ma-bt-lg Recover your password
+      form#sendRecoverEmail.form.recover-form
+        .form__group.ma-bt-md
+          label.form__label(for='YourEmail') Email address
+          input#yourEmail.form__input(type='email', placeholder='you@example.com', required)
+        .form__group
+          button#recoverBtn.btn.btn--green(type='submit') Recover Your password
