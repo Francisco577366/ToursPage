@@ -30,11 +30,11 @@ export const Email = class {
       })
     } else {
       return nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        host: 'smtp.mailersend.net',
+        port: '587',
         auth: {
-          user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD,
+          user: process.env.MAILERSEND_USERNAME,
+          pass: process.env.MAILERSEND_PASSWORD,
         },
       })
     }
