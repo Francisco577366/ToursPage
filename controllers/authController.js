@@ -44,11 +44,8 @@ export const signup = catchAsync(async (req, res, next) => {
     role: req.body.role,
   })
   const url = `${req.protocol}://${req.get('host')}/me`
-<<<<<<< HEAD
 
-=======
   console.log(url)
->>>>>>> parent of 5191929 (Change the url for the hoisting)
   await new Email(newUser, url).sendWelcome()
 
   createSendToken(newUser, 200, res)
