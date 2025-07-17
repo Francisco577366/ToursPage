@@ -18,7 +18,7 @@ export const Email = class {
   }
 
   newTransport() {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'development') {
       //Sendgrid
       return nodemailer.createTransport({
         service: 'gmail',
