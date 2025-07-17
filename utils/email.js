@@ -14,27 +14,26 @@ export const Email = class {
     this.to = user.email
     this.firstName = user.name.split(' ')[0]
     this.url = url
-    this.from = 'noreply@mailersend.net'
+    this.from = `Francisco Nieto <${process.env.EMAIL_FROM}>`
   }
 
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
       //Sendgrid
       return nodemailer.createTransport({
-        host: 'smtp.mailersend.net',
-        port: '587',
+        service: 'gmail',
         auth: {
-          user: process.env.MAILERSEND_USERNAME,
-          pass: process.env.MAILERSEND_PASSWORD,
+          user: process.env.EMAIL_USERNAME,
+          pass: process.env.EMAIL_PASSWORD,
         },
       })
     } else {
       return nodemailer.createTransport({
-        host: 'smtp.mailersend.net',
-        port: '587',
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
         auth: {
-          user: process.env.MAILERSEND_USERNAME,
-          pass: process.env.MAILERSEND_PASSWORD,
+          user: process.env.MAILTRAP_USER,
+          pass: process.env.MAILTRAP_PASS,
         },
       })
     }
