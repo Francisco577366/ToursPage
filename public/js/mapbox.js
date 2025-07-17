@@ -22,7 +22,7 @@ export const displayMap = locations => {
 
     locations.forEach((loc, i) => {
       const [lng, lat] = loc.coordinates
-      //console.log(loc)
+      console.log(loc)
 
       const marker = L.marker([lat, lng])
         .addTo(map)
@@ -36,7 +36,7 @@ export const displayMap = locations => {
       }, i * 1000)
 
       bounds.push([lat, lng])
-      //console.log(bounds)
+      console.log(bounds)
     })
     map.invalidateSize()
     map.fitBounds(bounds, {

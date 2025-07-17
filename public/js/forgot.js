@@ -8,7 +8,7 @@ export const forgotPassword = async email => {
   try {
     const res = await axios({
       method: 'POST',
-      url: '/api/v1/users/forgotPassword',
+      url: 'http://127.0.0.1:3000/api/v1/users/forgotPassword',
       data: email,
     })
 
@@ -17,7 +17,7 @@ export const forgotPassword = async email => {
 
       setTimeout(() => {
         if (disableButton) disableButton.disabled = false
-        showAlert('success', 'You cant resend the email now')
+        console.log('Botón reactivado después de 60 segundos')
       }, 60000)
     }
   } catch (err) {
@@ -33,7 +33,7 @@ export const passwordChange = async (password, passwordReset) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `/api/v1/users/resetPassword/${token}`,
+      url: `http://127.0.0.1:3000/api/v1/users/resetPassword/${token}`,
       data: {
         password,
         confirmPassword: passwordReset,

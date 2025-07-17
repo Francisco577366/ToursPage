@@ -1,4 +1,3 @@
-import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import mongoSanitize from 'express-mongo-sanitize'
@@ -106,8 +105,6 @@ app.use(
 )
 
 app.use(express.json())
-
-app.use(compression())
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString()
