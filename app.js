@@ -1,4 +1,5 @@
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import express from 'express'
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit'
@@ -27,6 +28,12 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
 
+app.use(
+  cors({
+    origin: 'https://tourspage-production.up.railway.app',
+    credentials: true,
+  })
+)
 // Set Security HTTP Headers
 app.use(
   helmet({
