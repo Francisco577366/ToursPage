@@ -21,7 +21,9 @@ export const Email = class {
     if (process.env.NODE_ENV === 'production') {
       //Sendgrid
       return nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
         auth: {
           user: process.env.EMAIL_USERNAME,
           pass: process.env.EMAIL_PASSWORD,
