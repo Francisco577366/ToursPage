@@ -43,9 +43,12 @@ export const signup = catchAsync(async (req, res, next) => {
     passwordChangedAt: req.body.passwordChangedAt,
     role: req.body.role,
   })
-  const url = `${req.protocol}://${req.get('host')}/me`
 
-  console.log(url)
+  const url =
+    process.env.NODE_ENV === 'development'
+      ? 'tourspage-production.up.railway.app/me'
+      : `${req.protocol}://${req.get('host')}/me`
+
   await new Email(newUser, url).sendWelcome()
 
   createSendToken(newUser, 200, res)
