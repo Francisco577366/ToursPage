@@ -7,7 +7,7 @@ export const login = async (email, password) => {
     const res = await axios({
       method: 'POST',
       url:
-        process.env.NODE_ENV === 'development'
+        process.env.NODE_ENV === 'production'
           ? `https://tourspage-production.up.railway.app/api/v1/users/login`
           : 'http://127.0.0.1:3000/api/v1/users/login',
       data: {
@@ -32,7 +32,7 @@ export const logout = async () => {
     const res = await axios({
       method: 'GET',
       url:
-        process.env.NODE_ENV === 'development'
+        process.env.NODE_ENV === 'production'
           ? `https://tourspage-production.up.railway.app/api/v1/users/logout`
           : 'http://127.0.0.1:3000/api/v1/users/logout',
     })

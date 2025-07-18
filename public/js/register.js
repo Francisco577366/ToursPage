@@ -6,7 +6,7 @@ export const registerUser = async data => {
     const res = await axios({
       method: 'POST',
       url:
-        process.env.NODE_ENV === 'development'
+        process.env.NODE_ENV === 'production'
           ? `https://tourspage-production.up.railway.app/api/v1/users/signup`
           : 'http://127.0.0.1:3000/api/v1/users/signup',
       data,

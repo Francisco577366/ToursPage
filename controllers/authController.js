@@ -45,7 +45,7 @@ export const signup = catchAsync(async (req, res, next) => {
   })
 
   const url =
-    process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'production'
       ? 'tourspage-production.up.railway.app/me'
       : `${req.protocol}://${req.get('host')}/me`
 
