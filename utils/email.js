@@ -14,22 +14,20 @@ export const Email = class {
     this.to = user.email
     this.firstName = user.name.split(' ')[0]
     this.url = url
-    this.from = `Francisco Nieto <redryu507@gmail.com>`
+    this.from = 'onboarding@resend.dev'
   }
 
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
       //Sendgrid
       return nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
+        host: 'smtp.resend.com',
+        port: 465,
+        secure: true,
         auth: {
-          user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD,
+          user: 'resend',
+          pass: process.env.RESEND_API_KEY,
         },
-        logger: true,
-        debug: true,
       })
     } else {
       return nodemailer.createTransport({
