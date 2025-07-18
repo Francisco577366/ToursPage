@@ -65,6 +65,7 @@ app.use(
           'ws:',
           'http://127.0.0.1:*',
           'https://tourspage-production-2299.up.railway.app',
+          'https://tourspage-production.up.railway.app',
         ],
         'object-src': ["'none'"],
         'frame-ancestors': ["'self'"],
