@@ -24,6 +24,7 @@ const app = express()
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, 'views'))
+app.set('trust proxy', true)
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true, limit: '10kb' }))
