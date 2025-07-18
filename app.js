@@ -60,7 +60,12 @@ app.use(
           'https://unpkg.com',
           'https://*.tile.openstreetmap.org',
         ],
-        'connect-src': ["'self'", 'ws:', 'http://127.0.0.1:*'],
+        'connect-src': [
+          "'self'",
+          'ws:',
+          'http://127.0.0.1:*',
+          'https://tourspage-production-2299.up.railway.app',
+        ],
         'object-src': ["'none'"],
         'frame-ancestors': ["'self'"],
         'frame-src': ["'self'", 'https://js.stripe.com'],
