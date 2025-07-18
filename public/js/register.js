@@ -5,7 +5,10 @@ export const registerUser = async data => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://127.0.0.1:3000/api/v1/users/signup',
+      url:
+        process.env.NODE_ENV === 'development'
+          ? `https://tourspage-production.up.railway.app/api/v1/users/signup`
+          : 'http://127.0.0.1:3000/api/v1/users/signup',
       data,
     })
     if (res.data.status === 'success') {

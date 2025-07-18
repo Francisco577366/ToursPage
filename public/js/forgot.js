@@ -8,7 +8,10 @@ export const forgotPassword = async email => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://127.0.0.1:3000/api/v1/users/forgotPassword',
+      url:
+        process.env.NODE_ENV === 'development'
+          ? `https://tourspage-production.up.railway.app/api/v1/users/forgotPassword`
+          : 'http://127.0.0.1:3000/api/v1/users/forgotPassword',
       data: email,
     })
 
@@ -33,7 +36,10 @@ export const passwordChange = async (password, passwordReset) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://127.0.0.1:3000/api/v1/users/resetPassword/${token}`,
+      url:
+        process.env.NODE_ENV === 'development'
+          ? `https://tourspage-production.up.railway.app/api/v1/users/resetPassword/${token}`
+          : `http://127.0.0.1:3000/api/v1/users/resetPassword/${token}`,
       data: {
         password,
         confirmPassword: passwordReset,
