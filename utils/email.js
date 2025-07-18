@@ -14,7 +14,7 @@ export const Email = class {
     this.to = user.email
     this.firstName = user.name.split(' ')[0]
     this.url = url
-    this.from = `redryu507@gmail.com>`
+    this.from = `Francisco Nieto <redryu507@gmail.com>`
   }
 
   newTransport() {
@@ -28,6 +28,8 @@ export const Email = class {
           user: process.env.EMAIL_USERNAME,
           pass: process.env.EMAIL_PASSWORD,
         },
+        logger: true,
+        debug: true,
       })
     } else {
       return nodemailer.createTransport({
