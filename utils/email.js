@@ -43,22 +43,31 @@ export const Email = class {
 
   async send(template, subject) {
     // Send the actual email
+    try {
+      const html = pug.renderFile(
+        `${__dirname}/../views/email/${template}.pug`,
+        {
+          firstName: this.firstName,
+          url: this.url,
+          subject,
+        }
+      )
 
-    const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
-      firstName: this.firstName,
-      url: this.url,
-      subject,
-    })
+      const mailOptions = {
+        from: this.from,
+        to: this.to,
+        subject,
+        html,
+        text: convert(html),
+      }
 
-    const mailOptions = {
-      from: this.from,
-      to: this.to,
-      subject,
-      html,
-      text: convert(html),
+      const transporter = this.newTransport()
+      const info = await transporter.sendMail(mailOptions)
+      console.log('✅ Email enviado:', info.response)
+    } catch (err) {
+      console.error('❌ Error al enviar correo:', err.message)
+      console.log('↪️ Detalles:', err)
     }
-
-    await this.newTransport().sendMail(mailOptions)
   }
 
   async sendWelcome() {
