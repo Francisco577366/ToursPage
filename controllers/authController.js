@@ -49,8 +49,8 @@ export const signup = catchAsync(async (req, res, next) => {
       ? 'tourspage-production.up.railway.app/me'
       : `${req.protocol}://${req.get('host')}/me`
 
-  createSendToken(newUser, 200, res)
   await new Email(newUser, url).sendWelcome()
+  createSendToken(newUser, 200, res)
 })
 
 export const login = catchAsync(async (req, res, next) => {
