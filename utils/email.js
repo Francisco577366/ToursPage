@@ -28,6 +28,8 @@ export const Email = class {
           user: 'resend',
           pass: process.env.RESEND_API_KEY,
         },
+        logger: true,
+        debug: true,
       })
     } else {
       return nodemailer.createTransport({
