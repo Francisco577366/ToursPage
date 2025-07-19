@@ -1,4 +1,3 @@
-import { convert } from 'html-to-text'
 import nodemailer from 'nodemailer'
 import path from 'path'
 import pug from 'pug'
@@ -21,11 +20,15 @@ export const Email = class {
     if (process.env.NODE_ENV === 'production') {
       //Sendgrid
       return nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.EMAIL_USERNAME,
           pass: process.env.EMAIL_PASSWORD,
         },
+        logger: true,
+        debug: true,
       })
     } else {
       return nodemailer.createTransport({
@@ -55,10 +58,9 @@ export const Email = class {
         from: this.from,
         to: this.to,
         subject,
-        html,
-        text: convert(html),
+        subject: 'prueba desde railway',
+        text: 'Este es un correo de prueba enviado desde el backend',
       }
-
       const transporter = this.newTransport()
       const info = await transporter.sendMail(mailOptions)
       console.log('✅ Email enviado:', info.response)
