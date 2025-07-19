@@ -55,11 +55,10 @@ export const Email = class {
       )
 
       const mailOptions = {
-        from: this.from,
-        to: this.to,
-        subject,
-        subject: 'prueba desde railway',
-        text: 'Este es un correo de prueba enviado desde el backend',
+        from: `"Tourspage" <${process.env.GMAIL_FROM}>`,
+        to: 'tucorreo@gmail.com',
+        subject: 'Prueba limpia',
+        text: 'Hola Francisco, este es un correo de prueba sin HTML.',
       }
       const transporter = this.newTransport()
       const info = await transporter.sendMail(mailOptions)
