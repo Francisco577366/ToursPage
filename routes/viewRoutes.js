@@ -1,6 +1,5 @@
 import express from 'express'
 import * as authController from '../controllers/authController.js'
-import * as bookingController from '../controllers/bookingController.js'
 import * as viewController from '../controllers/viewController.js'
 
 const router = express.Router()
@@ -10,7 +9,7 @@ router.get('/forgotPassword', viewController.renderForgotPassword)
 
 router.get(
   '/',
-  bookingController.createBookingCheckout,
+  //bookingController.createBookingCheckout,
   authController.isLoggedIn,
   viewController.getOverview
 )

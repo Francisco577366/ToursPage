@@ -9,6 +9,7 @@ import morgan from 'morgan'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import xss from 'xss-clean'
+import * as bookingController from './controllers/bookingController.js'
 import globalErrorHandler from './controllers/errorController.js'
 import bookingRouter from './routes/bookingRoutes.js'
 import reviewRouter from './routes/reviewRoutes.js'
@@ -35,6 +36,8 @@ app.use(
     credentials: true,
   })
 )
+
+app.options('/{*any}', cors())
 // Set Security HTTP Headers
 app.use(
   helmet({
@@ -78,6 +81,12 @@ app.use(
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+)
 
 // Limit request from same Api
 const limiter = rateLimit({
@@ -131,7 +140,7 @@ app.use('/api/v1/users', userRouter)
 app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/bookings', bookingRouter)
 
-app.all('*', (req, res, next) => {
+app.all('/{*any}', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))
 })
 
