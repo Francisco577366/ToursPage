@@ -4,6 +4,8 @@ import * as viewController from '../controllers/viewController.js'
 
 const router = express.Router()
 
+router.use(viewController.alerts)
+
 router.get('/signup', viewController.signup)
 router.get('/forgotPassword', viewController.renderForgotPassword)
 

@@ -1,4 +1,5 @@
 import '@babel/polyfill'
+import { showAlert } from './alert'
 import * as change from './forgot.js'
 import './login.js'
 import { login, logout } from './login.js'
@@ -100,3 +101,6 @@ if (bookBtn)
     const { tourId } = e.target.dataset
     bookTour(tourId)
   })
+
+const alertMessage = document.querySelector('body').dataset.alert
+if (alert) showAlert('success', alertMessage, 20)
